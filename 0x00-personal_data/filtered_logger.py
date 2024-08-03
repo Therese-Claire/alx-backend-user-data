@@ -10,13 +10,11 @@ import os
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
-def filter_datum(fields: List[str], redaction: str, message: str,
-                 separator: str) -> str:
-    """ Returns regex obfuscated log messages """
-    for field in fields:
-        message = re.sub(f'{field}=(.*?){separator}',
-                         f'{field}={redaction}{separator}', message)
-    return message
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
+    """returns the log message obfuscated"""
+    pattern = r'({})=.*?{}'.format('|'.join(fields), separator)
+    return re.sub(pattern, r'\1={}{}'.format(redaction, separator), message)
 
 
 def get_logger() -> logging.Logger:
