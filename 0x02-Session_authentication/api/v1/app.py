@@ -102,7 +102,7 @@ def handle_request():
     if auth_header is None and session_cookie is None:
         abort(401)
     # If auth.current_user(request) returns None, raise the error 403 - you
-    # must use abort
+    # must use abort.
     user = auth.current_user(request)
     if user is None:
         abort(403)
