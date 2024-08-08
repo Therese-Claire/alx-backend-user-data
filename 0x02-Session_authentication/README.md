@@ -1,5 +1,7 @@
-#Project Name:
-## 0x02. Session authentication
+# Simple API
+
+Simple HTTP API for playing with `User` model.
+
 
 ## Files
 
